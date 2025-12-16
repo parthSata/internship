@@ -1,0 +1,319 @@
+/* --- 1. DESIGN SYSTEM --- */
+:root {
+    --col-dark: #1A3C32;  /* The deep emerald/forest green from the design */
+    --col-gold: #C5A059;  /* Muted luxury gold */
+    --col-beige: #F9F5F0; /* Light background cream */
+    --col-white: #FFFFFF;
+    --col-text: #2c2c2c;
+    --col-gray: #777777;
+    
+    --font-head: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+    
+    --pad-section: 80px 20px;
+    --pad-mobile: 50px 20px;
+    --max-w: 1280px;
+}
+
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); color: var(--col-text); background: var(--col-white); overflow-x: hidden; }
+img { width: 100%; height: auto; display: block; object-fit: cover; }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+button { border: none; background: none; cursor: pointer; font-family: inherit; }
+
+/* TYPOGRAPHY */
+h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 500; }
+.text-center { text-align: center; }
+.section-title {
+    font-size: 2.8rem;
+    color: var(--col-dark);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+.section-sub {
+    font-size: 1rem;
+    color: var(--col-gray);
+    margin-bottom: 2rem;
+    letter-spacing: 0.5px;
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1px solid var(--col-dark);
+    background: transparent;
+    color: var(--col-dark);
+    margin-top: 20px;
+}
+.btn:hover { background: var(--col-dark); color: var(--col-white); }
+
+.btn-filled { background: var(--col-dark); color: var(--col-white); }
+.btn-filled:hover { background: transparent; color: var(--col-dark); }
+
+.btn-link { 
+    border: none; padding: 0; border-bottom: 1px solid currentColor; 
+    font-size: 0.9rem; margin-top: 10px;
+}
+
+/* LAYOUT UTILS */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+/* --- 2. HEADER --- */
+.promo-bar {
+    background: #FCEFE9;
+    text-align: center;
+    font-size: 0.75rem;
+    padding: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #333;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo { font-size: 1.8rem; letter-spacing: 4px; font-weight: 700; color: var(--col-dark); }
+
+.nav-menu { display: flex; gap: 35px; }
+.nav-menu a {
+    font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
+    position: relative;
+}
+.nav-menu a::after {
+    content:''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px; background: var(--col-dark); transition: 0.3s;
+}
+.nav-menu a:hover::after { width: 100%; }
+
+.nav-icons { display: flex; gap: 20px; font-size: 1.4rem; color: var(--col-dark); align-items: center; }
+.hamburger { display: none; }
+
+/* --- 3. HERO --- */
+.hero {
+    height: 90vh;
+    width: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url('https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=2831&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center 30%; /* Focus on model face */
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.hero-text {
+    color: white;
+    max-width: 600px;
+    margin-left: 8%;
+    animation: fadeIn 1s ease-out;
+}
+.hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
+.hero h1 span { font-style: italic; font-weight: 400; }
+.hero p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; line-height: 1.6; }
+
+/* --- 4. USP STRIP --- */
+.usp-bar {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 40px 20px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+.usp-item { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; text-transform: uppercase; color: #555; }
+.usp-item i { font-size: 1.2rem; color: var(--col-gold); }
+
+/* --- 5. BESTSELLERS --- */
+.bestsellers { padding: var(--pad-section); text-align: center; }
+.filter-tabs { display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; }
+.tab { font-size: 1rem; cursor: pointer; padding-bottom: 5px; color: #888; transition: 0.3s; }
+.tab.active { color: var(--col-dark); border-bottom: 1px solid var(--col-dark); }
+
+.product-card { text-align: left; position: relative; group; }
+.product-img { position: relative; height: 380px; overflow: hidden; margin-bottom: 15px; background: #f4f4f4; }
+.product-img img { transition: transform 0.6s ease; height: 100%; }
+.product-card:hover .product-img img { transform: scale(1.05); }
+
+.tag-new { position: absolute; top: 10px; left: 10px; background: white; padding: 4px 10px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+
+.p-name { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; color: #444; }
+.p-price { font-family: var(--font-head); font-size: 1.2rem; font-weight: 600; color: var(--col-dark); }
+
+/* --- 6. CATEGORY GRID --- */
+.collections { padding: var(--pad-section); background: var(--col-beige); }
+.cat-grid {
+    display: grid;
+    grid-template-areas: 
+        "a b c"
+        "d e f";
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    height: 800px;
+}
+.cat-item { position: relative; overflow: hidden; cursor: pointer; }
+.cat-item img { height: 100%; transition: 0.5s; }
+.cat-item:hover img { transform: scale(1.03); }
+.cat-label {
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: white; padding: 10px 30px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; min-width: 150px; text-align: center;
+}
+
+/* Specific sizing for masonry feel */
+.cat-item:nth-child(1) { grid-area: a; }
+.cat-item:nth-child(2) { grid-area: b; }
+.cat-item:nth-child(3) { grid-area: c; }
+.cat-item:nth-child(4) { grid-area: d; }
+
+/* --- 7. SPECIAL SECTIONS (Gift Note, Winter, Prices) --- */
+.banner-gift {
+    background: #EBEBEB; padding: 60px 20px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.banner-gift i { font-size: 3rem; color: var(--col-gold); margin-bottom: 10px; }
+
+.price-buckets { padding: 60px 20px; text-align: center; }
+.price-grid { display: flex; justify-content: center; gap: 30px; margin-top: 30px; }
+.price-circle {
+    width: 180px; height: 180px; border-radius: 50%; border: 1px solid #ddd;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    transition: 0.3s; cursor: pointer;
+}
+.price-circle:hover { background: var(--col-dark); color: white; border-color: var(--col-dark); }
+.price-circle span { font-size: 0.8rem; text-transform: uppercase; }
+.price-circle h4 { font-size: 1.5rem; margin-top: 5px; }
+
+/* --- 8. LAB GROWN DARK --- */
+.lab-grown {
+    background: var(--col-dark); color: white;
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 500px;
+}
+.lab-content { padding: 80px; display: flex; flex-direction: column; justify-content: center; }
+.lab-content h2 { font-size: 3.5rem; color: #fff; margin-bottom: 20px; }
+.lab-content p { opacity: 0.8; line-height: 1.7; margin-bottom: 30px; max-width: 450px; }
+.lab-img { background: url('https://images.unsplash.com/photo-1615655406736-b37c4fabf923?q=80&w=2070&auto=format&fit=crop') center/cover; }
+.btn-white { border-color: white; color: white; }
+.btn-white:hover { background: white; color: var(--col-dark); }
+
+/* --- 9. GIFTING --- */
+.gifting { padding: var(--pad-section); text-align: center; }
+.gift-card img { height: 450px; margin-bottom: 20px; }
+.gift-card h3 { font-size: 1.4rem; margin-bottom: 10px; }
+.gift-card p { font-size: 0.9rem; color: #666; padding: 0 15px; margin-bottom: 15px; }
+
+/* --- 10. ETHOS --- */
+.ethos { padding: 100px 20px; text-align: center; max-width: 800px; margin: 0 auto; }
+.ethos h2 { font-size: 3.5rem; color: var(--col-dark); }
+.ethos p { font-size: 1.1rem; line-height: 1.8; color: #555; margin: 30px 0; }
+
+/* --- 11. FEATURES ICONS --- */
+.features-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px;
+    padding: 60px 20px; background: #fafafa; text-align: center;
+}
+.feat-item i { font-size: 2rem; color: var(--col-dark); margin-bottom: 10px; display: block; }
+.feat-item span { font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: #555; }
+
+/* --- 12. TESTIMONIALS --- */
+.testimonials { padding: var(--pad-section); background: var(--col-beige); text-align: center; }
+.test-slider { max-width: 800px; margin: 40px auto 0; position: relative; overflow: hidden; }
+.test-slide { display: none; animation: slideIn 0.5s ease; }
+.test-slide.active { display: block; }
+.stars { color: var(--col-gold); font-size: 1.2rem; margin-bottom: 15px; }
+.quote { font-family: var(--font-head); font-size: 2rem; margin-bottom: 20px; color: var(--col-dark); }
+.review-text { font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: 20px; }
+.customer { font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+
+.dots { display: flex; justify-content: center; gap: 10px; margin-top: 30px; }
+.dot { width: 10px; height: 10px; background: #ccc; border-radius: 50%; cursor: pointer; }
+.dot.active { background: var(--col-dark); }
+
+/* --- 13. FOOTER --- */
+footer { background: #fcfcfc; padding: 80px 20px 30px; border-top: 1px solid #eaeaea; }
+.footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+.f-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; }
+.f-col ul li { margin-bottom: 12px; font-size: 0.9rem; color: #666; cursor: pointer; }
+.f-col ul li:hover { color: var(--col-dark); text-decoration: underline; }
+.f-desc { font-size: 0.9rem; line-height: 1.6; color: #666; max-width: 300px; }
+
+.footer-btm { text-align: center; font-size: 0.8rem; color: #999; border-top: 1px solid #eee; padding-top: 30px; }
+
+/* =========================================
+   MOBILE RESPONSIVENESS (MATCHING PDF)
+   ========================================= */
+@media (max-width: 768px) {
+    :root {
+        --pad-section: 60px 15px;
+    }
+    
+    /* Header */
+    .nav-menu {
+        position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+        background: white; flex-direction: column; justify-content: center; align-items: center;
+        transition: 0.4s ease; box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    }
+    .nav-menu.active { right: 0; }
+    .hamburger { display: block; cursor: pointer; }
+    .logo { font-size: 1.4rem; }
+
+    /* Hero */
+    .hero { height: 70vh; background-position: 70% center; }
+    .hero-text { margin-left: 5%; max-width: 90%; }
+    .hero h1 { font-size: 2.5rem; }
+    
+    /* USP Strip - Scrollable on mobile */
+    .usp-bar { justify-content: flex-start; overflow-x: auto; padding: 20px; white-space: nowrap; }
+    .usp-item { flex-shrink: 0; }
+
+    /* Grids -> Single/Double Columns */
+    .grid-4, .grid-3 { grid-template-columns: 1fr; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; } /* 2 cols for products on mobile */
+    .product-img { height: 200px; }
+    
+    /* Categories Masonry -> Simple Stack */
+    .cat-grid { display: flex; flex-direction: column; height: auto; }
+    .cat-item { height: 300px; width: 100%; margin-bottom: 10px; }
+
+    /* Price Buckets */
+    .price-grid { flex-wrap: wrap; }
+    .price-circle { width: 140px; height: 140px; }
+
+    /* Lab Grown */
+    .lab-grown { grid-template-columns: 1fr; display: flex; flex-direction: column-reverse; }
+    .lab-img { height: 300px; width: 100%; }
+    .lab-content { padding: 40px 20px; text-align: center; align-items: center; }
+    .lab-content h2 { font-size: 2.2rem; }
+
+    /* Features Grid */
+    .features-grid { grid-template-columns: repeat(3, 1fr); gap: 30px 10px; }
+
+    /* Footer */
+    .footer-top { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+    .f-desc { margin: 0 auto; }
+}
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
